@@ -1,0 +1,4 @@
+address: "localhost:8080"
+cosign:
+    name: bi-provider
+    password: "place-key-here"
