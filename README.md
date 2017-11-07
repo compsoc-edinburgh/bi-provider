@@ -1,4 +1,4 @@
-# bi-provider [![Go Report Card](https://goreportcard.com/badge/github.com/compsoc-edinburgh/bi-provider)](https://goreportcard.com/report/github.com/compsoc-edinburgh/bi-provider) [![GoDoc](https://godoc.org/github.com/compsoc-edinburgh/bi-provider?status.svg)](https://godoc.org/github.com/compsoc-edinburgh/bi-provider)
+# bi-provider [![Go Report Card](https://goreportcard.com/badge/github.com/compsoc-edinburgh/bi-provider)](https://goreportcard.com/report/github.com/compsoc-edinburgh/bi-provider)
 
 This is the API for Better Informatics that provides information about the currently logged in user.
 
