@@ -40,12 +40,12 @@ func NewAPI(
 		Gin:    router,
 	}
 
-	router.GET("/", a.Provide)
+	router.GET("/", a.provide)
 
 	return a
 }
 
-func (a *API) Provide(c *gin.Context) {
+func (a *API) provide(c *gin.Context) {
 	cookie, err := c.Cookie("cosign-betterinformatics.com")
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
@@ -133,7 +133,7 @@ func (a *API) Provide(c *gin.Context) {
 	})
 }
 
-type OutStruct struct {
+type outStruct struct {
 	Username  string
 	Name      string
 	Year      string
@@ -143,7 +143,7 @@ type OutStruct struct {
 	IsStudent bool
 }
 
-func getGroups(u string) (out OutStruct, err error) {
+func getGroups(u string) (out outStruct, err error) {
 	conn, err := ldap.Dial("tcp", "localhost:1389")
 	if err != nil {
 		return out, err

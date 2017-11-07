@@ -1,5 +1,6 @@
 package config
 
+// Config is the configuration struct
 type Config struct {
 	LogLevel string `default:"debug"`
 
