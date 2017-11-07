@@ -214,5 +214,12 @@ func getGroups(u string) (out outStruct, err error) {
 		}
 	}
 
+	if out.IsStudent {
+		// Forum > FH
+		// ... but where does AT lie?
+		//
+		out.IsStudent = out.Cohort != "pgr"
+	}
+
 	return out, nil
 }
