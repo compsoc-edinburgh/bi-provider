@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/compsoc-edinburgh/bi-provider/pkg/config"
+	"github.com/pkg/errors"
 
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
@@ -31,7 +32,7 @@ func (a *API) Start() error {
 // Shutdown shuts down the API
 func (a *API) Shutdown(ctx context.Context) error {
 	if err := a.Server.Shutdown(ctx); err != nil {
-		return err
+		return errors.Wrap(err, "could not shutdown http server")
 	}
 
 	return nil
