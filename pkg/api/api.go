@@ -25,9 +25,16 @@ func NewAPI(
 	// security measures
 	router.Use(
 		func(c *gin.Context) {
+			// Grant access to either betterinformatics.com, or alpha.betterinformatics.com, but no other website.
+			origin := c.Request.Header.Get("Origin")
+			if (origin == "https://betterinformatics.com") || (origin == "https://alpha.betterinformatics.com") {
+				c.Header("Access-Control-Allow-Origin", origin)
+			} else {
+				c.Header("Access-Control-Allow-Origin", "https://betterinformatics.com")
+			}
+
 			c.Header("X-Frame-Options", "DENY")
 			c.Header("Content-Type", "application/json")
-			c.Header("Access-Control-Allow-Origin", "https://betterinformatics.com")
 			c.Header("Access-Control-Allow-Credentials", "true")
 
 			c.Next()
