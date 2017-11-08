@@ -38,6 +38,8 @@ func NewAPI(
 				c.Header("Access-Control-Allow-Origin", "https://betterinformatics.com")
 			}
 
+			c.Header("Vary", "Origin, Cookie")
+			c.Header("Cache-Control", "max-age=3600")
 			c.Header("X-Frame-Options", "DENY")
 			c.Header("Content-Type", "application/json")
 			c.Header("Access-Control-Allow-Credentials", "true")
