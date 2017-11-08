@@ -14,6 +14,11 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
+var outNotLoggedIn = gin.H{
+	"status":  "error",
+	"message": "not logged in",
+}
+
 // NewAPI sets up a new API module.
 func NewAPI(
 	conf *config.Config,
@@ -55,10 +60,7 @@ func NewAPI(
 func (a *API) provide(c *gin.Context) {
 	cookie, err := c.Cookie("cosign-betterinformatics.com")
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"status":  "error",
-			"message": "could not find betterinformatics cookie",
-		})
+		c.JSON(http.StatusUnauthorized, outNotLoggedIn)
 
 		return
 	}
@@ -69,9 +71,7 @@ func (a *API) provide(c *gin.Context) {
 		"?ip=" + c.ClientIP() +
 		"&cookie=" + strings.Replace(cookie, " ", "%2B", -1)
 
-	resp, err := http.Get(
-		url,
-	)
+	resp, err := http.Get(url)
 
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
@@ -104,6 +104,11 @@ func (a *API) provide(c *gin.Context) {
 			"status":  "error",
 			"message": "could not decode JSON",
 		})
+		return
+	}
+
+	if resp.StatusCode == http.StatusUnauthorized {
+		c.JSON(http.StatusUnauthorized, outNotLoggedIn)
 		return
 	}
 
