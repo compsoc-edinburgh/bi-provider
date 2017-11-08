@@ -14,10 +14,6 @@ Absolutely not. We set the `Access-Control-Allow-Origin` header, causing your br
 
 Found a security vulnerability? Please email [qaisjp](mailto:me@qaisjp.com) right away.
 
-## What's left?
-
-- Using LDAP to get user information
-
 ## CoSign?
 
 This repository uses [gosign](https://github.com/qaisjp/gosign), a library to interact with CoSign daemons.
